@@ -48,9 +48,9 @@ const embed = new EmbedBuilder()
 .setDescription("Sunucumuzda destek oluşturabilmek için aşağıdaki butona basıp bir kategori seçmeniz gerekiyor.")
 .addFields(
      { name: '\u200B', value: '\u200B' },
-     { name: "🎉 Çekiliş Kazandım ", value: "Bir çekiliş kazandıysan ödülünü burdan alacaksın.", inline: true },
-     { name: "☢️ Altyapı Çalıntı Bildirimi ", value: "Biri altyapımızı çaldıysa onu sunucudan yasaklatabilirsin.", inline: true },
-     { name: "⛔ Kullanıcı Bildirimi ", value: "Bir kullanıcıyı bildirirsin.", inline: true },
+     { name: "☣️  Oyun Hatası ", value: "Bir çekiliş kazandıysan ödülünü burdan alacaksın.", inline: true },
+     { name: "☢️ Altyapı Çalıntı Bildirimi ", value: "Biri hilemizi çaldıysa ve satmaya çalıştıysa onu sunucudan yasaklatabilirsin.", inline: true },
+     { name: "⛔ Bug Bildirimi ", value: "Bir Bug bildirirsin.", inline: true },
  )
  .setThumbnail("https://cdn.discordapp.com/attachments/1016663875342569562/1045979609965015080/ravenDestek.png")
  .setFooter({ text: "Kod destek hakkında yardım almak için '⛔・kod-destek' kanalını kullanın!", iconURL: "https://cdn.discordapp.com/attachments/1016663875342569562/1045979609965015080/ravenDestek.png" })
@@ -70,9 +70,9 @@ if(interaction.customId === "destek") {
   const row = new Discord.ActionRowBuilder()
   .addComponents(
     new Discord.ButtonBuilder()
-    .setEmoji("🎉")
+    .setEmoji("☣️ ")
     .setStyle(Discord.ButtonStyle.Success)
-    .setCustomId("Çekiliş Kazandım"), 
+    .setCustomId("Oyun Hatası"), 
     new Discord.ButtonBuilder()
     .setEmoji("☢️")
     .setStyle(Discord.ButtonStyle.Primary)
@@ -80,7 +80,7 @@ if(interaction.customId === "destek") {
     new Discord.ButtonBuilder()
     .setEmoji("⛔")
     .setStyle(Discord.ButtonStyle.Danger)
-    .setCustomId("Kullanıcı Bildirimi"),
+    .setCustomId("Bug Bildirimi"),
 
   )
   const embed = new EmbedBuilder()
@@ -91,7 +91,7 @@ interaction.reply({embeds: [embed], components: [row], ephemeral: true}).catch(e
 
 }
 
-const butonlar = ["Çekiliş Kazandım","Altyapı Çalıntı Bildirimi","Kullanıcı Bildirimi"]
+const butonlar = ["Oyun Hatası","Altyapı Çalıntı Bildirimi","Bug Bildirimi"]
 if(butonlar.includes(interaction.customId)) {
   await interaction.deferUpdate()
   const data = db.get(`ticket_${interaction.guild.id}`) || "1"
@@ -119,7 +119,7 @@ if(butonlar.includes(interaction.customId)) {
                  .then((c)=>{
 
 const embed = new EmbedBuilder()
-.setAuthor({name: "Raven - Destek Sistemi!", iconURL: interaction.guild.iconURL()})
+.setAuthor({name: "Skyze - Destek Sistemi!", iconURL: interaction.guild.iconURL()})
 .setDescription("Hey, destek talebi açtığına göre önemli bir konu olmalı.Bu sürede birini etiketleme ve sakince sorununu belirt.")
 .addFields(
   { name: '\u200B', value: '\u200B' },
